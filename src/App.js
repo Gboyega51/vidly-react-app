@@ -7,6 +7,14 @@ import { useState } from "react";
 function App() {
   const [movies, setMovies] = useState(getMovies());
 
+  const handleLike = (movie) => {
+    const moviesN = [...movies];
+    const index = movies.indexOf(movie);
+    moviesN[index] = { ...movies[index] };
+    moviesN[index].liked = !movies[index].liked;
+    setMovies(moviesN);
+  };
+
   const handleDelete = (movie) => {
     setMovies(movies.filter((m) => m._id !== movie));
   };
@@ -17,7 +25,7 @@ function App() {
   return (
     <main className="container">
       <p>Showing {movies.length} movies in the database</p>
-      <Movies movies={movies} onDelete={handleDelete} />
+      <Movies onClick={handleLike} movies={movies} onDelete={handleDelete} />
     </main>
   );
 }

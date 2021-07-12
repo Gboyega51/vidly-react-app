@@ -1,4 +1,6 @@
-const Movies = ({ movies, onDelete }) => {
+import Like from "./common/Like";
+
+const Movies = ({ movies, onDelete, onClick }) => {
   return (
     <div>
       <table className="table">
@@ -8,7 +10,8 @@ const Movies = ({ movies, onDelete }) => {
             <th>Genre</th>
             <th>Stock</th>
             <th>Rate</th>
-            <th></th>
+            <th />
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -18,6 +21,14 @@ const Movies = ({ movies, onDelete }) => {
               <td>{movie.genre.name}</td>
               <td>{movie.numberInStock}</td>
               <td>{movie.dailyRentalRate}</td>
+              <td>
+                <Like
+                  onClick={() => onClick(movie)}
+                  style={{ cursor: "pointer" }}
+                  movies={movies}
+                  liked={movie.liked}
+                />
+              </td>
               <td>
                 <button
                   onClick={() => onDelete(movie._id)}
