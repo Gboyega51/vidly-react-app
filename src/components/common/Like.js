@@ -1,4 +1,4 @@
-const Like = ({ liked, onClick, movies }) => {
+const Like = ({ liked, onClick }) => {
   let classes = "fa fa-heart";
   if (!liked) classes += "-o";
   return (

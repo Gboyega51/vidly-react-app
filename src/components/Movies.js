@@ -1,6 +1,21 @@
 import Like from "./common/Like";
+import Pagination from "./common/Pagination";
+import { useState } from "react";
+import { paginate } from "../utils/Paginate";
 
-const Movies = ({ movies, onDelete, onClick }) => {
+const Movies = ({ movies: allMovies, onDelete, onClick }) => {
+  const [pageSize, setPageSize] = useState(4);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  if (allMovies.length === 0) {
+    return <p>There are no movies to show</p>;
+  }
+
+  const movies = paginate(allMovies, currentPage, pageSize);
   return (
     <div>
       <table className="table">
@@ -41,6 +56,12 @@ const Movies = ({ movies, onDelete, onClick }) => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        itemsCount={allMovies.length}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

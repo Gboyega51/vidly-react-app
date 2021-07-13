@@ -19,9 +19,6 @@ function App() {
     setMovies(movies.filter((m) => m._id !== movie));
   };
 
-  if (movies.length === 0) {
-    return <p>There are no movies to show</p>;
-  }
   return (
     <main className="container">
       <p>Showing {movies.length} movies in the database</p>
