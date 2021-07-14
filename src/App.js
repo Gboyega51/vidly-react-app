@@ -21,7 +21,6 @@ function App() {
 
   return (
     <main className="container">
-      <p>Showing {movies.length} movies in the database</p>
       <Movies onClick={handleLike} movies={movies} onDelete={handleDelete} />
     </main>
   );
